@@ -12,7 +12,6 @@ namespace SnakeLadderSimulation
         const int snake = 2;
         // variable
         static int playerPosition = 0;
-
         /// <summary>
         /// This method is used to choose the option.
         /// </summary>
@@ -21,29 +20,34 @@ namespace SnakeLadderSimulation
             // variables
             int die = 0;
             int option = 0;
-            Random random = new Random();
-            option = random.Next(0, 3);
-            // invoking the getDie method
-            die = getDie();
-            if (option == 1)
+            while (playerPosition < 100)
             {
-                playerPosition = playerPosition + die;
-                Console.WriteLine("Player status is Ladder");
-                Console.WriteLine("Player position is:" + playerPosition);
-            }
-            else if (option == 2)
-            {
-                playerPosition = playerPosition - die;
-                Console.WriteLine("Player status is Snake");
-                Console.WriteLine("Player position is:" + playerPosition);
-            }
-            else
-            {
-                Console.WriteLine("Player status is No Play");
-                Console.WriteLine("Player position is:" + playerPosition);
+                Random random = new Random();
+                option = random.Next(0, 3);
+                // invoking the getDie method
+                die = getDie();
+                if (option == 1)
+                {
+                    playerPosition = playerPosition + die;
+                    Console.WriteLine("Player status is Ladder");
+                    Console.WriteLine("Player position is:" + playerPosition);
+                }
+                else if (option == 2)
+                {
+                    if (playerPosition > 0 && (playerPosition-die) >= 0)
+                    {
+                        playerPosition = playerPosition - die;
+                        Console.WriteLine("Player status is Snake");
+                        Console.WriteLine("Player position is:" + playerPosition);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Player status is No Play");
+                    Console.WriteLine("Player position is:" + playerPosition);
+                }
             }
         }
-
         /// <summary>
         /// getDie method is used to get the random die value.
         /// </summary>
