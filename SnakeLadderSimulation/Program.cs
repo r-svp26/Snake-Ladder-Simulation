@@ -6,8 +6,7 @@ namespace SnakeLadderSimulation
     {
         static void Main(string[] args)
         {
-            SnakeLadderSimulator simulator = new SnakeLadderSimulator();
-            simulator.getDie();
+            SnakeLadderSimulator.selectOption();
         }
     }
 }
