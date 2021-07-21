@@ -6,15 +6,14 @@ namespace SnakeLadderSimulation
 {
     class SnakeLadderSimulator
     {
-        // variable
-        int position = 0;
-
         /// <summary>
-        /// Single Player starting postion is zero.
+        /// getDie method is used to get the random die value.
         /// </summary>
-        public void start()
+        public void getDie() 
         {
-            Console.WriteLine("Starting position is:" +position);
+                Random random = new Random();
+                int die = random.Next(1, 7);
+                Console.WriteLine(die);
         }
     }
 }

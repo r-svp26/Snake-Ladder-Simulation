@@ -7,7 +7,7 @@ namespace SnakeLadderSimulation
         static void Main(string[] args)
         {
             SnakeLadderSimulator simulator = new SnakeLadderSimulator();
-            simulator.start();
+            simulator.getDie();
         }
     }
 }
