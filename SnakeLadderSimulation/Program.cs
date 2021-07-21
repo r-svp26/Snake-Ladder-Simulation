@@ -6,7 +6,8 @@ namespace SnakeLadderSimulation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Snake Ladder Simulator.");
+            SnakeLadderSimulator simulator = new SnakeLadderSimulator();
+            simulator.start();
         }
     }
 }
