@@ -53,17 +53,19 @@ namespace SnakeLadderSimulation
                         break;
                 }
             }
-            Console.WriteLine("Total number of dice rolled is:" +diceCount);
+            Console.WriteLine("Total number of dice rolled is:" + diceCount);
         }
 
         /// <summary>
         /// getDie method is used to get the random die value.
         /// </summary>
-         public static int GetDie() 
+        public static int GetDie()
         {
-                Random random = new Random();
-                int die = random.Next(1, 7);
-                return die;
+            Random random = new Random();
+            int die = random.Next(1, 7);
+            return die;
         }
     }
 }
+
+
