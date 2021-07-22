@@ -6,7 +6,7 @@ namespace SnakeLadderSimulation
     {
         static void Main(string[] args)
         {
-            SnakeLadderSimulator.selectOption();
+            SnakeLadderSimulator.SelectOption();
         }
     }
 }
