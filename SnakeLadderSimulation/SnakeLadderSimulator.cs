@@ -6,59 +6,132 @@ namespace SnakeLadderSimulation
 {
     class SnakeLadderSimulator
     {
+        // constants
+        const int WIN_SCORE = 100;
+        const int NO_PLAY = 0;
+        const int LADDER = 1;
+        const int SNAKE = 2;
         // variables
-        static int playerPosition = 0;
-        static int diceCount = 0;
-        /// <summary>
-        /// This method is used to choose the option.
-        /// </summary>
-        public static void selectOption()
-        {
-            // variables
-            int die;
-            int option;
+        int firstPlayerPosition = 0;
+        int firstPlayerDiceCount = 0;
+        int firstPlayerStatus = 0;
+        int firstPlayerDie;
+        int secondPlayerPosition = 0;
+        int secondPlayerDiceCount = 0;
+        int secondPlayerStatus = 0;
+        int secondPlayerDie;
 
-            while (playerPosition < 100)
+        public void PlayWin()
+        {
+            while (firstPlayerPosition <= WIN_SCORE && secondPlayerPosition <= WIN_SCORE)
             {
                 Random random = new Random();
-                option = random.Next(0, 3);
-                diceCount++;
-                // invoking the getDie method
-                die = getDie();
-                if (option == 1)
+                firstPlayerDie = random.Next(1, 7);
+                firstPlayerDiceCount++;
+                firstPlayerStatus = random.Next(0, 3);
+                switch (firstPlayerStatus)
                 {
-                    if (playerPosition <= 100 && (playerPosition + die) <= 100)
-                    {
-                        playerPosition += die;
-                        Console.WriteLine("Player status is Ladder");
-                        Console.WriteLine("Player position is:" + playerPosition);
-                    }
+                    case NO_PLAY:
+                        firstPlayerPosition += 0;
+                        break;
+                    case LADDER:
+                        if (firstPlayerPosition > WIN_SCORE)
+                            firstPlayerPosition -= firstPlayerDie;
+                        while (firstPlayerStatus == LADDER)
+                        {
+                            firstPlayerStatus = random.Next(0, 3);
+                            if (firstPlayerStatus == LADDER)
+                            {
+                                firstPlayerDie = random.Next(1, 7);
+                                firstPlayerPosition += firstPlayerDie;
+                                firstPlayerDiceCount++;
+                                if (firstPlayerPosition > WIN_SCORE)
+                                    firstPlayerPosition -= firstPlayerDie;
+                                if (firstPlayerPosition == WIN_SCORE)
+                                    break;
+                            }
+                            if (firstPlayerStatus == SNAKE)
+                            {
+                                firstPlayerPosition -= firstPlayerDie;
+                                firstPlayerDiceCount++;
+                                break;
+                            }
+                        }
+                        break;
+                    default:
+                        firstPlayerPosition -= firstPlayerDie;
+                        break;
                 }
-                else if (option == 2)
+                if (firstPlayerPosition < 0)
                 {
-                    if (playerPosition > 0 && (playerPosition-die) >= 0)
-                    {
-                        playerPosition -= die;
-                        Console.WriteLine("Player status is Snake");
-                        Console.WriteLine("Player position is:" + playerPosition);
-                    }
+                    firstPlayerPosition = 0;
+                    Console.WriteLine("First player position is:" + firstPlayerPosition);
                 }
-                else
+                if (firstPlayerPosition < WIN_SCORE)
                 {
-                    Console.WriteLine("Player status is No Play");
-                    Console.WriteLine("Player position is:" + playerPosition);
+                    firstPlayerPosition += firstPlayerDie;
+                    Console.WriteLine("First player position is:" + firstPlayerPosition);
+                }
+                if (firstPlayerPosition == WIN_SCORE)
+                {
+                    Console.WriteLine("First player reaches the winning position:" + firstPlayerPosition);
+                    Console.WriteLine("Total number of times rolled dice by first player is:" + firstPlayerDiceCount);
+                    break;
+                }
+                // Second Player
+                secondPlayerDie = random.Next(1, 7);
+                secondPlayerDiceCount++;
+                secondPlayerStatus = random.Next(0, 3);
+                switch (secondPlayerStatus)
+                {
+                    case NO_PLAY:
+                        secondPlayerPosition += 0;
+                        break;
+                    case LADDER:
+                        if (secondPlayerPosition > WIN_SCORE)
+                            secondPlayerPosition -= secondPlayerDie;
+                        while (secondPlayerStatus == LADDER)
+                        {
+                            secondPlayerStatus = random.Next(0, 3);
+                            if (secondPlayerStatus == LADDER)
+                            {
+                                secondPlayerDie = random.Next(1, 7);
+                                secondPlayerPosition += secondPlayerDie;
+                                secondPlayerDiceCount++;
+                                if (secondPlayerPosition > WIN_SCORE)
+                                    secondPlayerPosition -= secondPlayerDie;
+                                if (secondPlayerPosition == WIN_SCORE)
+                                    break;
+                            }
+                            if (secondPlayerStatus == SNAKE)
+                            {
+                                secondPlayerPosition -= secondPlayerDie;
+                                secondPlayerDiceCount++;
+                                break;
+                            }
+                        }
+                        break;
+                    default:
+                        secondPlayerPosition -= secondPlayerDie;
+                        break;
+                }
+                if (secondPlayerPosition < 0)
+                {
+                    secondPlayerPosition = 0;
+                    Console.WriteLine("Second player position is:" + secondPlayerPosition);
+                }
+                if (secondPlayerPosition < WIN_SCORE)
+                {
+                    secondPlayerPosition += secondPlayerDie;
+                    Console.WriteLine("Second player position is:" + secondPlayerPosition);
+                }
+                if (secondPlayerPosition == WIN_SCORE)
+                {
+                    Console.WriteLine("Second player reaches the winning position:" + secondPlayerPosition);
+                    Console.WriteLine("Total number of times rolled dice by second player is:" + secondPlayerDiceCount);
+                    break;
                 }
             }
-            Console.WriteLine("Total number of dice rolled is:" +diceCount);
-        }
-        /// <summary>
-        /// getDie method is used to get the random die value.
-        /// </summary>
-         public static int getDie() 
-        {
-                Random random = new Random();
-                int die = random.Next(1, 7);
-                return die;
         }
     }
 }

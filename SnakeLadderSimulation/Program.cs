@@ -6,7 +6,8 @@ namespace SnakeLadderSimulation
     {
         static void Main(string[] args)
         {
-            SnakeLadderSimulator.selectOption();
+            SnakeLadderSimulator simulator = new SnakeLadderSimulator();
+            simulator.PlayWin();
         }
     }
 }
