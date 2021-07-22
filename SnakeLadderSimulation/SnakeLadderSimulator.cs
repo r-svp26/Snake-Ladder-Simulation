@@ -6,11 +6,7 @@ namespace SnakeLadderSimulation
 {
     class SnakeLadderSimulator
     {
-        // constants
-        const int noPlay = 0;
-        const int ladder = 1;
-        const int snake = 2;
-        // variable
+        // variables
         static int playerPosition = 0;
         static int diceCount = 0;
         /// <summary>
@@ -19,8 +15,9 @@ namespace SnakeLadderSimulation
         public static void selectOption()
         {
             // variables
-            int die = 0;
-            int option = 0;
+            int die;
+            int option;
+
             while (playerPosition < 100)
             {
                 Random random = new Random();
@@ -32,7 +29,7 @@ namespace SnakeLadderSimulation
                 {
                     if (playerPosition <= 100 && (playerPosition + die) <= 100)
                     {
-                        playerPosition = playerPosition + die;
+                        playerPosition += die;
                         Console.WriteLine("Player status is Ladder");
                         Console.WriteLine("Player position is:" + playerPosition);
                     }
@@ -41,7 +38,7 @@ namespace SnakeLadderSimulation
                 {
                     if (playerPosition > 0 && (playerPosition-die) >= 0)
                     {
-                        playerPosition = playerPosition - die;
+                        playerPosition -= die;
                         Console.WriteLine("Player status is Snake");
                         Console.WriteLine("Player position is:" + playerPosition);
                     }
